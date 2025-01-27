@@ -31,11 +31,14 @@ const getWeather = async (location = '') => {
     }
 }
 
-// getWeather('Ho Chi Minh City');
-
 // Server
 const express = require("express");
 const app = express();
+const path = require("path");
+
+// Cấu hình đường dẫn tĩnh để truy xuất vào tài nguyên từ trình duyệt
+const pathPublic = path.join(__dirname, './public');
+app.use(express.static(pathPublic));
 
 // Cấu hình port cụ thể (randomly)
 const port = 7000;
