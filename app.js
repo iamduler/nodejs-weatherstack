@@ -14,7 +14,7 @@ const getWeather = async (location = '') => {
         const data = JSON.parse(res.body);
 
         let result = {
-            region: data.location.region,
+            region: data.location.region || data.location.name,
             country: data.location.country,
             temperature: data.current.temperature,
             wind_speed: data.current.wind_speed,
@@ -22,7 +22,7 @@ const getWeather = async (location = '') => {
             cloudcover: data.current.cloudcover,
         }
 
-        console.log(result);
+        console.log(data);
         return result;
     }
     catch (error) {
@@ -49,6 +49,21 @@ app.listen(port, () => {
 // http://localhost:7000/
 // Khi truy cập vào đường dẫn trên thì sẽ chạy vào hàm dưới đây
 // Có 2 tham số mặc định là request và response
-app.get("/", (req, res) => {
-    res.send("Hello world!"); // Gửi về trình duyệt
+app.get("/", async (req, res) => {
+    // res.send("Hello world!"); // Gửi về trình duyệt
+    const params = req.query;
+    const location = params.address;
+    const weather = await getWeather(location);
+
+    res.render('weather', {
+        region: weather.region,
+        country: weather.country,
+        temperature: weather.temperature,
+        wind_speed: weather.wind_speed,
+        precip: weather.precip,
+        cloudcover: weather.cloudcover,
+        address: location
+    });
 })
+
+app.set('view engine', 'hbs');
