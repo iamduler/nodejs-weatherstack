@@ -1,0 +1,26 @@
+{
+	"name": "nodejs-weatherstack",
+	"version": "1.0.0",
+	"description": "API: https://weatherstack.com/",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node app.js",
+		"dev": "nodemon app.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/iamduler/nodejs-weatherstack.git"
+	},
+	"author": "Duler",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/iamduler/nodejs-weatherstack/issues"
+	},
+	"homepage": "https://github.com/iamduler/nodejs-weatherstack#readme",
+	"dependencies": {
+		"async-request": "^1.2.0",
+		"express": "^4.21.2",
+		"nodemon": "^3.1.9"
+	}
+}
